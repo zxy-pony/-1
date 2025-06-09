@@ -1,1 +1,138 @@
-# -1
+<!--
+	此示例下载自 https://echarts.apache.org/examples/zh/editor.html?c=pie-nest&decal=1&code=PYBwLglsB2AEC8sDeBYAULWZjADaRAC5l1NMwAnCAc2oFMLiByCMOgWyYBpSyAzYBXYBDMG0awmSYQF9YAHgBGFAPQA-JIpnEkAYzkAKJABMZAUgCUTXjJ4ZYuOvWjGdvTCpWxAV8qBd-UCaroAA6YCBkYAhboB_aoDR8oCeGe6wxqLCxADacZhMgLByIYDmjoCZpqGAgAGALnqAXXLcaZI5-cVldmRkTFWhgHPqgOKpNeX29ZlNbR119ZXBeaGAOYqAiub9FT3D-RMdcQC6NgMAzgwQdKspcahdZNDC7HTMgFeBgKVGgN6KBYCw5oCFSoGAQjaAowaArYqdg1gAniAnkiCbD6DdaOXRsYwAWWAxj-TFWEGg1EcQPqFGExggAFdtrBkgAGLiSADMeLMTEWA3quGEijouDc-3qIGA8MgMGYCOgDBRgwE0DAAGUIAAvP4ARgALBVbBVqbTcAAZBF_PafTCrAAWwAA7sQ-MJcOtpZSyJ5YIBQxUAEOqAB1NAHbGFQSYCSuIqmCQsAAbgbMX8ABwANgAdL7CYdjswsrNCqUmLAZYyyO6vbgfcQxUTAwAmUNHWFNDpxirLfbx-qqwZh2E1QDePoBqJR55B-sIBdAbsDRGOxKSYEoArGTCUx_aTySbMHK6UquQy1Q46IiwBriCTjbKaXSZ2qBEJROJmNIAD7SGQyaSKagHmQAHWgSA1FEvN7diiPWkAWP-n_Ru34PkzmOSSGOZCKMIugANbUBQwCYi4ADCeCCMwADEABi_oob6KGwW2mCKIIMIUPBuCIZISG-rBvoACK-gAojhsB4RQBEAOoQMYi5pkBuH4QwABK6JYjiEpce2EC6EuJAJvUzrlrOmC6AhEhMEh_o0QA7HiakAJz0VSyoABJ0DQGpgMQmbZq6gwGjQ0DMLo87iNYUlkKWcn3puckMTxhGKch5FUbRulkNqbEcZIYp4iOIn1IxLGhRJYrRWQGpGdQJnEHilmYK5s6KB5ckKcRSlIRKsG9niva-kFmB8oKIrisJWX8DAYDMal6WSHhuDGNVDgGe1pmwESRJNTlao_vls6FSRyl8HNvUgeBkHQXBvmkaV5WVb1IDohiiIpEShIShSTXcUxfECV2sBSs52WWTIq4JmagBomjatqABD_gBPuoAhdGAOnegDuioAyvKADwKgCQ_w6iQ7M5Sben8BgGBFeKwAAtLAkqBmpFiwAAVNd_oWIG2AoRAAAedDGAjFg5uGkiRiM8wxnGIkwymcMI5FKNo2KgZaVjuO9hKBNE6T5OU9TsJ0_kfSM2NZaerDxAI9zWk47AAtC8AxNkxTYpU7AlbML07Qy8z8us4r6NqarEr44TmsizresG0M9OTDLRZxA99jFjIADcQA
+	⚠ 请注意，该图表不是 Apache ECharts 官方示例，而是由用户代码生成的。请注意鉴别其内容。
+-->
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+
+  
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://echarts.apache.org/zh/js/vendors/echarts-gl/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://echarts.apache.org/zh/js/vendors/echarts-stat/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-graph-modularity extension
+  <script type="text/javascript" src="https://echarts.apache.org/zh/js/vendors/echarts-graph-modularity/dist/echarts-graph-modularity.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5/dist/extension/bmap.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    option = {
+  tooltip: {
+    trigger: 'item',
+    formatter: '{a} <br/>{b}: {c} ({d}%)'
+  },
+  legend: {
+    // 只保留需要的图例项
+    data: [
+      '不需要照料的老年人',
+      '需要照料的老年人',
+      '需要照料的城镇老年人',
+      '不需要照料的城镇老年人',
+      '需要照料的农村老年人',
+      '不需要照料的农村老年人'
+    ]
+  },
+  series: [
+    {
+      name: '自报养老服务需求情况',
+      type: 'pie',
+      selectedMode: 'single',
+      radius: [0, '30%'],
+      label: {
+        position: 'inner',
+        fontSize: 14
+      },
+      labelLine: {
+        show: false
+      },
+      // 内圈数据
+      data: [
+        { value: 86.8, name: '不需要照料的老年人' },
+        { value: 13.2, name: '需要照料的老年人' }
+      ]
+    },
+    {
+      name: '老年人类别',
+      type: 'pie',
+      radius: ['45%', '60%'],
+      labelLine: {
+        length: 30
+      },
+      label: {
+        formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+        backgroundColor: '#F6F8FC',
+        borderColor: '#8C8D8E',
+        borderWidth: 1,
+        borderRadius: 4,
+        rich: {
+          a: {
+            color: '#6E7079',
+            lineHeight: 22,
+            align: 'center'
+          },
+          hr: {
+            borderColor: '#8C8D8E',
+            width: '100%',
+            borderWidth: 1,
+            height: 0
+          },
+          b: {
+            color: '#4C5058',
+            fontSize: 14,
+            fontWeight: 'bold',
+            lineHeight: 33
+          },
+          per: {
+            color: '#fff',
+            backgroundColor: '#4C5058',
+            padding: [3, 4],
+            borderRadius: 4
+          }
+        }
+      },
+      // 外圈数据（已计算具体值）
+      data: [
+        { value: ((100 - 14.7) * 46).toFixed(1), name: '不需要照料的农村老年人' },
+        { value: ((100 - 11.9) * 54).toFixed(1), name: '不需要照料的城镇老年人' },
+        { value: (11.9 * 54).toFixed(1), name: '需要照料的城镇老年人' },
+        { value: (14.7 * 46).toFixed(1), name: '需要照料的农村老年人' }
+      ]
+    }
+  ]
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>
